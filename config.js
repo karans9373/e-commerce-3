@@ -3,5 +3,5 @@ window.APP_CONFIG = {
     window.location.hostname === "localhost" ||
     window.location.hostname === "127.0.0.1"
       ? ""
-      : "https://e-commerce-3.onrender.com",
+      : "https://e-commerce-3-tgpq.onrender.com",
 };
