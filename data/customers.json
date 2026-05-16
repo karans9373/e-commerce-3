@@ -1,0 +1,9 @@
+[
+  {
+    "id": 1,
+    "name": "Demo Customer",
+    "email": "customer@example.com",
+    "password": "customer123",
+    "address": "221 Market Road, Mumbai, India"
+  }
+]

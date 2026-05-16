@@ -1,0 +1,59 @@
+[
+  {
+    "id": 3,
+    "customer": {
+      "name": "Demo Customer",
+      "email": "customer@example.com",
+      "address": "221 Market Road, Mumbai, India"
+    },
+    "items": [
+      {
+        "id": 3,
+        "name": "Urban Jacket",
+        "price": 1779,
+        "quantity": 1
+      }
+    ],
+    "total": 1779.0,
+    "status": "Processing",
+    "createdAt": "2026-05-16 15:56:57"
+  },
+  {
+    "id": 2,
+    "customer": {
+      "name": "Demo Customer",
+      "email": "customer@example.com",
+      "address": "221 Market Road, Mumbai, India"
+    },
+    "items": [
+      {
+        "id": 1,
+        "name": "Oxford Shirt",
+        "price": 1499,
+        "quantity": 1
+      }
+    ],
+    "total": 1499.0,
+    "status": "Processing",
+    "createdAt": "2026-05-16 15:56:49"
+  },
+  {
+    "id": 1,
+    "customer": {
+      "name": "a,aa",
+      "email": "asasa@gmail.com",
+      "address": "sasas"
+    },
+    "items": [
+      {
+        "id": 1,
+        "name": "Tank Top",
+        "price": 50,
+        "quantity": 1
+      }
+    ],
+    "total": 50.0,
+    "status": "Cancelled",
+    "createdAt": "2026-05-16 15:30:34"
+  }
+]

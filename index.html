@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E Commerce</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="site-shell">
+    <header class="topbar">
+      <div class="brand-row container">
+        <button class="menu-toggle" type="button" aria-label="Open navigation">Menu</button>
+        <form class="search-box" id="search-form">
+          <span>Search</span>
+          <input id="search-input" type="search" placeholder="Search products" aria-label="Search products">
+        </form>
+        <a class="brand" href="#home">E Commerce</a>
+        <div class="action-icons">
+          <button type="button" class="icon-link" id="customer-button">Login / Signup</button>
+          <button type="button" class="icon-link" id="orders-button">Orders</button>
+          <button type="button" class="icon-link" id="admin-button">Admin</button>
+          <button type="button" class="icon-link cart-button" id="cart-button">Cart <span id="cart-count">0</span></button>
+        </div>
+      </div>
+
+      <nav class="main-nav container" id="main-nav">
+        <a href="#home" class="active">Home</a>
+        <a href="#catalogue">Collections</a>
+        <a href="#shop">Shop</a>
+        <a href="#new-arrivals">New Arrivals</a>
+        <a href="#customer-orders">Track Orders</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="container hero-grid">
+          <div class="hero-visual"></div>
+          <div class="hero-copy">
+            <p class="eyebrow">New collection</p>
+            <h1>Finding Your Perfect Store</h1>
+            <p>
+              Discover fashion, shoes, and watches in one polished ecommerce storefront with customer ordering,
+              product details, and a dedicated admin dashboard.
+            </p>
+            <a class="cta" href="#shop">Shop Now</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="service-strip">
+        <div class="container service-grid">
+          <article>
+            <h2>100 Real Products</h2>
+            <p>Men, women, children, shoes, and watches all have their own curated catalog sections.</p>
+          </article>
+          <article>
+            <h2>Fast Order Tracking</h2>
+            <p>Customers can monitor live order status updates from processing through delivery.</p>
+          </article>
+          <article>
+            <h2>New Admin Tab</h2>
+            <p>The admin experience now opens in a dedicated dashboard window with stats and order tools.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="collections" id="catalogue">
+        <div class="container collection-grid five-up">
+          <a class="collection-card men" href="#shop"><span>Collections</span><strong>Men</strong></a>
+          <a class="collection-card women" href="#shop"><span>Collections</span><strong>Women</strong></a>
+          <a class="collection-card children" href="#shop"><span>Collections</span><strong>Children</strong></a>
+          <a class="collection-card shoes" href="#shop"><span>Collections</span><strong>Shoes</strong></a>
+          <a class="collection-card watches" href="#shop"><span>Collections</span><strong>Watches</strong></a>
+        </div>
+      </section>
+
+      <section class="featured" id="new-arrivals">
+        <div class="container">
+          <div class="section-heading">
+            <span></span>
+            <h2>Featured Products</h2>
+          </div>
+          <div class="featured-grid" id="featured-products"></div>
+        </div>
+      </section>
+
+      <section class="category-showcase">
+        <div class="container showcase-stack">
+          <div class="section-heading left compact">
+            <span></span>
+            <h2>More To Explore</h2>
+          </div>
+          <div class="showcase-block">
+            <div class="showcase-head">
+              <h3>Children</h3>
+              <button class="ghost-button jump-tab" type="button" data-category-jump="Children">Open Section</button>
+            </div>
+            <div class="showcase-grid" id="children-products"></div>
+          </div>
+          <div class="showcase-block">
+            <div class="showcase-head">
+              <h3>Shoes</h3>
+              <button class="ghost-button jump-tab" type="button" data-category-jump="Shoes">Open Section</button>
+            </div>
+            <div class="showcase-grid" id="shoes-products"></div>
+          </div>
+          <div class="showcase-block">
+            <div class="showcase-head">
+              <h3>Watches</h3>
+              <button class="ghost-button jump-tab" type="button" data-category-jump="Watches">Open Section</button>
+            </div>
+            <div class="showcase-grid" id="watches-products"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="shop-layout" id="shop">
+        <div class="container">
+          <div class="breadcrumb">Home / Shop</div>
+          <div class="section-heading left">
+            <span></span>
+            <h2>Shop All</h2>
+          </div>
+          <div class="shop-controls">
+            <div class="tabs">
+              <button class="tab active" data-category="All" type="button">All</button>
+              <button class="tab" data-category="Men" type="button">Men</button>
+              <button class="tab" data-category="Women" type="button">Women</button>
+              <button class="tab" data-category="Children" type="button">Children</button>
+              <button class="tab" data-category="Shoes" type="button">Shoes</button>
+              <button class="tab" data-category="Watches" type="button">Watches</button>
+            </div>
+            <div class="sorters">
+              <select id="sort-select" aria-label="Sort by">
+                <option value="default">Relevance</option>
+                <option value="name-asc">Name, A to Z</option>
+                <option value="name-desc">Name, Z to A</option>
+                <option value="price-asc">Price, low to high</option>
+                <option value="price-desc">Price, high to low</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="shop-grid">
+            <aside class="sidebar">
+              <div class="filter-card">
+                <h3>Browse Sections</h3>
+                <ul>
+                  <li><span>Men</span><b>20 items</b></li>
+                  <li><span>Women</span><b>20 items</b></li>
+                  <li><span>Children</span><b>20 items</b></li>
+                  <li><span>Shoes</span><b>20 items</b></li>
+                  <li><span>Watches</span><b>20 items</b></li>
+                </ul>
+              </div>
+              <div class="filter-card">
+                <h3>Filter by Price</h3>
+                <input id="price-filter" type="range" min="900" max="6000" value="6000">
+                <p id="price-label">Up to ₹6,000</p>
+              </div>
+              <div class="filter-card">
+                <h3>Need Help?</h3>
+                <p>Click any product card to see full details and add it to the cart instantly.</p>
+              </div>
+            </aside>
+
+            <div class="products-wrap">
+              <div class="products-grid" id="shop-products"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="status-section" id="customer-orders">
+        <div class="container two-panel">
+          <div class="panel">
+            <div class="section-heading left">
+              <span></span>
+              <h2>Customer Order Updates</h2>
+            </div>
+            <form id="order-lookup-form" class="stack-form">
+              <input id="lookup-email" type="email" placeholder="Enter customer email" required>
+              <button type="submit" class="cta secondary">See My Orders</button>
+            </form>
+            <div id="customer-orders-list" class="orders-list empty-state">Order updates will appear here.</div>
+          </div>
+
+          <div class="panel">
+            <div class="section-heading left">
+              <span></span>
+              <h2>Featured Sale</h2>
+            </div>
+            <div class="sale-card">
+              <div class="sale-image"></div>
+              <div class="sale-copy">
+                <p class="eyebrow">Limited Offer</p>
+                <h3>Fresh store launch with fashion, shoes, and watches</h3>
+                <p>Admin can now manage products and orders in a cleaner separate dashboard tab.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" id="contact">
+      <div class="container footer-grid">
+        <div>
+          <h3>Navigations</h3>
+          <div class="footer-links multi">
+            <a href="#shop">Shop</a>
+            <a href="#catalogue">Collections</a>
+            <a href="#customer-orders">Track Orders</a>
+            <a href="/admin.html" target="_blank" rel="noreferrer">Admin Dashboard</a>
+          </div>
+        </div>
+        <div>
+          <h3>Demo Logins</h3>
+          <div class="footer-links">
+            <p>Admin: <strong>admin / admin123</strong></p>
+            <p>Customer: <strong>customer@example.com / customer123</strong></p>
+          </div>
+        </div>
+        <div>
+          <h3>Contact Info</h3>
+          <div class="footer-links">
+            <p>203 Fake St. Mountain View, San Francisco, California, USA</p>
+            <p>+2 392 3929 210</p>
+            <p>emailaddress@domain.com</p>
+          </div>
+        </div>
+      </div>
+      <p class="copyright">Copyright &copy; <span id="year"></span> All rights reserved | E Commerce storefront</p>
+    </footer>
+  </div>
+
+  <aside class="cart-drawer" id="cart-drawer" aria-hidden="true">
+    <div class="drawer-header">
+      <h2>Your Cart</h2>
+      <button type="button" class="ghost-button" data-close-drawer="cart-drawer">Close</button>
+    </div>
+    <div id="cart-items" class="drawer-body empty-state">Your cart is empty.</div>
+    <div class="drawer-footer">
+      <p>Total: <strong id="cart-total">₹0</strong></p>
+      <form id="checkout-form" class="stack-form">
+        <input id="customer-name" type="text" placeholder="Customer name" required>
+        <input id="customer-email" type="email" placeholder="Customer email" required>
+        <textarea id="customer-address" placeholder="Delivery address" required></textarea>
+        <button type="submit" class="cta">Place Order</button>
+      </form>
+      <p id="checkout-message" class="message"></p>
+    </div>
+  </aside>
+
+  <section class="modal" id="product-modal" aria-hidden="true">
+    <div class="modal-card">
+      <button type="button" class="ghost-button modal-close" data-close-modal="product-modal">Close</button>
+      <div id="product-modal-content"></div>
+    </div>
+  </section>
+
+  <section class="modal" id="customer-modal" aria-hidden="true">
+    <div class="modal-card admin-card">
+      <button type="button" class="ghost-button modal-close" data-close-modal="customer-modal">Close</button>
+      <div class="section-heading left compact">
+        <span></span>
+        <h2>Customer Account</h2>
+      </div>
+      <div class="admin-grid">
+        <div class="panel">
+          <h3>Login</h3>
+          <form id="customer-login-form" class="stack-form">
+            <input id="customer-login-email" type="email" placeholder="Customer email" required>
+            <input id="customer-login-password" type="password" placeholder="Password" required>
+            <button type="button" class="ghost-button" id="fill-customer-demo">Use Demo Customer</button>
+            <button type="submit" class="cta">Login</button>
+          </form>
+          <p id="customer-login-message" class="message"></p>
+        </div>
+        <div class="panel">
+          <h3>Signup</h3>
+          <form id="customer-signup-form" class="stack-form">
+            <input id="customer-signup-name" type="text" placeholder="Full name" required>
+            <input id="customer-signup-email" type="email" placeholder="Email" required>
+            <input id="customer-signup-password" type="password" placeholder="Password" required>
+            <textarea id="customer-signup-address" placeholder="Address" required></textarea>
+            <button type="submit" class="cta secondary">Create Account</button>
+          </form>
+          <p id="customer-signup-message" class="message"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="backdrop hidden" id="global-backdrop"></div>
+
+  <script src="./script.js"></script>
+</body>
+</html>

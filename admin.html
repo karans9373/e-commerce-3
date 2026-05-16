@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E Commerce Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body class="admin-body">
+  <main class="admin-shell">
+    <section class="admin-hero">
+      <div>
+        <p class="eyebrow">Control Center</p>
+        <h1>Store Dashboard</h1>
+        <p>Track today’s sales, visitors, products, and customer orders from one cleaner workspace.</p>
+      </div>
+      <div class="admin-login-card">
+        <h2>Admin Login</h2>
+        <form id="admin-login-form" class="stack-form">
+          <input id="admin-username" type="text" placeholder="Admin username" required>
+          <input id="admin-password" type="password" placeholder="Admin password" required>
+          <div class="admin-login-actions">
+            <button type="button" class="ghost-button" id="fill-admin-demo">Use Demo Admin</button>
+            <button type="submit" class="cta">Login</button>
+          </div>
+        </form>
+        <p id="admin-login-message" class="message"></p>
+      </div>
+    </section>
+
+    <section id="admin-panel" class="hidden">
+      <div class="stats-grid" id="stats-grid"></div>
+
+      <section class="panel admin-orders-panel top-orders-panel">
+        <div class="section-heading left compact">
+          <span></span>
+          <h2>Orders</h2>
+        </div>
+        <div id="admin-orders" class="admin-list scroll-panel empty-state">Login to view orders.</div>
+      </section>
+
+      <section class="admin-workspace compact-workspace">
+        <div class="panel admin-panel-card">
+          <div class="section-heading left compact">
+            <span></span>
+            <h2>Add Product</h2>
+          </div>
+          <form id="add-product-form" class="stack-form">
+            <input id="new-name" type="text" placeholder="Product name" required>
+            <input id="new-description" type="text" placeholder="Short description" required>
+            <textarea id="new-details" placeholder="Full product details" required></textarea>
+            <div class="mini-grid">
+              <input id="new-price" type="number" min="1" step="1" placeholder="Price in rupees" required>
+              <input id="new-stock" type="number" min="0" step="1" placeholder="Stock" required>
+            </div>
+            <div class="mini-grid">
+              <select id="new-category">
+                <option>Men</option>
+                <option>Women</option>
+                <option>Children</option>
+                <option>Shoes</option>
+                <option>Watches</option>
+              </select>
+              <select id="new-tone">
+                <option value="blue">Blue</option>
+                <option value="pink">Pink</option>
+                <option value="green">Green</option>
+                <option value="coral">Coral</option>
+                <option value="slate">Slate</option>
+              </select>
+            </div>
+            <input id="new-image" type="text" placeholder="Image URL">
+            <label class="check-line"><input id="new-featured" type="checkbox"> Mark as featured</label>
+            <button type="submit" class="cta secondary">List Product</button>
+          </form>
+          <p id="add-product-message" class="message"></p>
+        </div>
+
+        <div class="panel admin-panel-card">
+          <div class="section-heading left compact">
+            <span></span>
+            <h2>Products</h2>
+          </div>
+          <div id="admin-products" class="admin-list scroll-panel empty-state">Login to view products.</div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="./admin.js"></script>
+</body>
+</html>
