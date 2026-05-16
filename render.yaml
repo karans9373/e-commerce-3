@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: e-commerce-3
+    runtime: python
+    plan: free
+    buildCommand: ""
+    startCommand: python app.py

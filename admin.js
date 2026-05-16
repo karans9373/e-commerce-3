@@ -1,6 +1,7 @@
 const adminState = {
   token: localStorage.getItem("adminToken") || "",
 };
+const API_BASE = window.APP_CONFIG?.API_BASE || "";
 
 const loginForm = document.getElementById("admin-login-form");
 const loginMessage = document.getElementById("admin-login-message");
@@ -21,7 +22,7 @@ function formatCurrency(value) {
 }
 
 async function request(url, options = {}) {
-  const response = await fetch(url, {
+  const response = await fetch(`${API_BASE}${url}`, {
     headers: {
       "Content-Type": "application/json",
       ...(options.headers || {}),
@@ -178,7 +179,7 @@ function renderOrders(orders) {
       await loadDashboard();
     });
     card.querySelector(".print-order").addEventListener("click", () => {
-      window.open(`/print/order/${order.id}?token=${encodeURIComponent(adminState.token)}`, "_blank");
+      window.open(`${API_BASE}/print/order/${order.id}?token=${encodeURIComponent(adminState.token)}`, "_blank");
     });
     return card;
   }));

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 from datetime import datetime
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -318,6 +319,14 @@ def build_summary() -> dict[str, Any]:
 class EcommerceHandler(SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=str(BASE_DIR), **kwargs)
+
+    def end_headers(self) -> None:
+        self.send_cors_headers()
+        super().end_headers()
+
+    def do_OPTIONS(self) -> None:
+        self.send_response(204)
+        self.end_headers()
 
     def do_GET(self) -> None:
         parsed = urlparse(self.path)
@@ -675,11 +684,22 @@ class EcommerceHandler(SimpleHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(body)
 
+    def send_cors_headers(self) -> None:
+        origin = self.headers.get("Origin", "")
+        if origin:
+            self.send_header("Access-Control-Allow-Origin", origin)
+            self.send_header("Vary", "Origin")
+        else:
+            self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type, X-Admin-Token")
 
-def run(host: str = "127.0.0.1", port: int = 8000) -> None:
+
+def run(host: str = "0.0.0.0", port: int | None = None) -> None:
     ensure_data_files()
-    server = ThreadingHTTPServer((host, port), EcommerceHandler)
-    print(f"E Commerce running at http://{host}:{port}")
+    resolved_port = port or int(os.environ.get("PORT", "8000"))
+    server = ThreadingHTTPServer((host, resolved_port), EcommerceHandler)
+    print(f"E Commerce running at http://{host}:{resolved_port}")
     print(f"Admin login -> username: {ADMIN_USERNAME} | password: {ADMIN_PASSWORD}")
     print(f"Demo customer -> email: {DEMO_CUSTOMER_EMAIL} | password: {DEMO_CUSTOMER_PASSWORD}")
     try:

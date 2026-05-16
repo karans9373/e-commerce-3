@@ -8,6 +8,7 @@ const state = {
   cart: [],
   customer: JSON.parse(localStorage.getItem("customerAccount") || "null"),
 };
+const API_BASE = window.APP_CONFIG?.API_BASE || "";
 
 const nav = document.getElementById("main-nav");
 const menuToggle = nav ? document.querySelector(".menu-toggle") : null;
@@ -130,7 +131,7 @@ if (customerButton) {
 
 if (adminButton) {
   adminButton.addEventListener("click", () => {
-    window.open("/admin.html", "_blank", "noopener,noreferrer");
+    window.open("./admin.html", "_blank", "noopener,noreferrer");
   });
 }
 
@@ -171,7 +172,7 @@ if (backdrop) {
 }
 
 async function request(url, options = {}) {
-  const response = await fetch(url, {
+  const response = await fetch(`${API_BASE}${url}`, {
     headers: {
       "Content-Type": "application/json",
       ...(options.headers || {}),
