@@ -12,6 +12,8 @@ const adminProducts = document.getElementById("admin-products");
 const adminOrders = document.getElementById("admin-orders");
 const addProductForm = document.getElementById("add-product-form");
 const addProductMessage = document.getElementById("add-product-message");
+const appLoader = document.getElementById("app-loader");
+const loaderText = document.getElementById("loader-text");
 
 function formatCurrency(value) {
   return new Intl.NumberFormat("en-IN", {
@@ -19,6 +21,17 @@ function formatCurrency(value) {
     currency: "INR",
     maximumFractionDigits: 0,
   }).format(value);
+}
+
+function showLoader(message = "Loading...") {
+  if (loaderText) {
+    loaderText.textContent = message;
+  }
+  appLoader?.classList.remove("hidden");
+}
+
+function hideLoader() {
+  appLoader?.classList.add("hidden");
 }
 
 async function request(url, options = {}) {
@@ -48,6 +61,7 @@ if (loginForm) {
   loginForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     loginMessage.textContent = "";
+    showLoader("Logging in and loading dashboard data.");
     try {
       const result = await request("/api/admin/login", {
         method: "POST",
@@ -61,8 +75,10 @@ if (loginForm) {
       loginMessage.textContent = "Admin login successful.";
       adminPanel.classList.remove("hidden");
       await loadDashboard();
+      hideLoader();
     } catch (error) {
       loginMessage.textContent = error.message;
+      showLoader("Dashboard could not load. Please check backend status or try again.");
     }
   });
 }
@@ -186,6 +202,7 @@ function renderOrders(orders) {
 }
 
 async function loadDashboard() {
+  showLoader("Connecting to backend and preparing admin data.");
   const [summary, productsResult, ordersResult] = await Promise.all([
     request("/api/admin/summary", { headers: { "X-Admin-Token": adminState.token } }),
     request("/api/admin/products", { headers: { "X-Admin-Token": adminState.token } }),
@@ -194,11 +211,15 @@ async function loadDashboard() {
   renderStats(summary);
   renderProducts(productsResult.products || []);
   renderOrders(ordersResult.orders || []);
+  hideLoader();
 }
 
 if (adminState.token) {
   adminPanel.classList.remove("hidden");
   loadDashboard().catch((error) => {
     loginMessage.textContent = error.message;
+    showLoader("Dashboard could not load. Please check backend status or try again.");
   });
+} else {
+  hideLoader();
 }

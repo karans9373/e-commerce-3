@@ -45,6 +45,8 @@ const customerLoginMessage = document.getElementById("customer-login-message");
 const customerSignupMessage = document.getElementById("customer-signup-message");
 const fillCustomerDemo = document.getElementById("fill-customer-demo");
 const backdrop = document.getElementById("global-backdrop");
+const appLoader = document.getElementById("app-loader");
+const loaderText = document.getElementById("loader-text");
 
 function formatCurrency(value) {
   return new Intl.NumberFormat("en-IN", {
@@ -52,6 +54,17 @@ function formatCurrency(value) {
     currency: "INR",
     maximumFractionDigits: 0,
   }).format(value);
+}
+
+function showLoader(message = "Loading...") {
+  if (loaderText) {
+    loaderText.textContent = message;
+  }
+  appLoader?.classList.remove("hidden");
+}
+
+function hideLoader() {
+  appLoader?.classList.add("hidden");
 }
 
 if (menuToggle && nav) {
@@ -513,12 +526,15 @@ function hydrateCustomerFields() {
 }
 
 async function loadProducts() {
+  showLoader("Fetching products and preparing your shopping experience.");
   try {
     const data = await request("/api/products");
     state.products = data.products || [];
     applyFilters();
+    hideLoader();
   } catch (error) {
     console.error("Could not load product data.", error);
+    showLoader("Store is taking longer than expected. Please refresh or check the backend connection.");
   }
 }
 

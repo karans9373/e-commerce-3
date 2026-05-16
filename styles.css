@@ -20,6 +20,51 @@ body {
   color: var(--text);
   background: radial-gradient(circle at top left, rgba(111, 89, 255, 0.08), transparent 26%), linear-gradient(180deg, #fffdf8 0%, #fff 32%, #fff8ef 100%);
 }
+.app-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, rgba(15, 16, 34, 0.88), rgba(35, 21, 59, 0.9));
+  padding: 24px;
+}
+.loader-card {
+  width: min(460px, 100%);
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--text);
+  border-radius: 28px;
+  padding: 34px 28px;
+  text-align: center;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.22);
+}
+.loader-card h2 {
+  margin: 0 0 8px;
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+}
+.loader-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.loader-ring {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  border: 6px solid rgba(111, 89, 255, 0.18);
+  border-top-color: var(--accent);
+  animation: spin 0.9s linear infinite;
+}
+.hidden {
+  display: none !important;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 a, button { color: inherit; }
 button, input, select, textarea { font: inherit; }
 button { cursor: pointer; }
@@ -149,7 +194,6 @@ button { cursor: pointer; }
 .product-detail-grid { grid-template-columns: minmax(0, 340px) 1fr; gap: 24px; align-items: center; }
 .detail-price { color: var(--accent); font-size: 1.5rem; font-weight: 700; }
 .detail-actions input { width: 100px; border: 1px solid var(--line); border-radius: 16px; padding: 12px; }
-.hidden { display: none !important; }
 .message { min-height: 24px; color: var(--accent-dark); }
 .empty-state { display: grid; place-items: center; min-height: 120px; text-align: center; color: var(--muted); border: 1px dashed var(--line); border-radius: 18px; padding: 20px; }
 .product-empty { min-height: 220px; }
